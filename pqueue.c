@@ -14,6 +14,16 @@
 #include <stdio.h>
 #include "stdlib.h"
 
+node_t* create_treenode(int index, int weight) {
+
+    // malloc the memory and assigning all fields before returning the node
+    node_t *tree = (node_t*)malloc(sizeof(node_t));
+    tree->index = index;
+    tree->weight = weight;
+    tree->left = NULL;
+    tree->right = NULL;
+    return tree;
+}
 pqueue* create_queue() {
     // Create empty queue struct and initialize all variables appropriately
     pqueue *q = (pqueue*)malloc(sizeof(pqueue));
@@ -59,15 +69,37 @@ void enqueue(pqueue *queue,node_t *tnode) {
 
 node_t* dequeue(pqueue *queue) {
     if (queue->front == NULL) { // do nothing if queue is empty
+        printf("Dequeue Error: Queue is Empty\n");
         return NULL;
     }
     // remove front node from queue and return the tree node
     node_q *tmp = queue->front;
-    node_t *treenode = queue->front->data;
+    node_t *treenode = tmp->data;
     queue->front = queue->front->next;
     free(tmp);
+    tmp = NULL;
     queue->size -= 1;
     return treenode;
 }
 
+void free_queue(pqueue **queue) {
+    // empty all nodes in queue then free queue
+    node_q *tmp;
+    while ((*queue)->front != NULL) {
+        tmp = (*queue)->front;
+        (*queue)->front = (*queue)->front->next;
+        free(tmp->data);
+        free(tmp);
+    }
+    free(*queue);
+    *queue = NULL;
+}
 
+void print_queue(pqueue *queue) {
+    node_q *current = queue->front;
+    while (current != NULL) { // iterate through the queue to print
+        printf("%c,%d ",current->data->index,current->data->weight);
+        current = current->next;
+    }
+    printf("\n");
+}

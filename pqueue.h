@@ -63,6 +63,14 @@ typedef struct pqueue {
 pqueue* create_queue();
 
 /**
+ * create a huffman tree node (NOTE: this function could be moved to another file e.g a common.h common.c)
+ * @param index character of tree node
+ * @param weight frequency of tree node character
+ * @return tree node created
+ */
+node_t* create_treenode(int index, int weight);
+
+/**
  * Enqueue the tree node in the appropriate priority position by its weight
  * @param queue queue that node will be added to
  * @param tnode tree node to be added to queue
@@ -75,6 +83,18 @@ void enqueue(pqueue *queue,node_t *tnode);
  * @return the front tree node from the queue
  */
 node_t* dequeue(pqueue *queue);
+
+/**
+ * Frees the memory of a queue and it's nodes
+ * @param queue The pointer to queue that will be freed.
+ */
+void free_queue(pqueue **queue);
+
+/**
+ * print out all nodes of a queue
+ * @param queue The queue to be printed
+ */
+void print_queue(pqueue *queue);
 #endif //PQUEUE_H
 
 
