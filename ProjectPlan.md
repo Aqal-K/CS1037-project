@@ -41,8 +41,13 @@
   - traverse huffman tree once for each character in the tree to get it's respective binary huffman code. 
   - make a conversion table list to store each character and their corresponding huffman code from the tree
   - Then traverse through your input file and replace each character with their corresponding huffman code
-  
-
+  - since we can only write 8 bits at a time have to append to a string until it reaches length 8 and then write to the file every time
+  - if the text file ends and not at the 8 characters just append 0s until it's 8 and write to the file
+  - will have to add a check in decode where it can terminate the tree traversing after the end of the file is reached and current position on tree is not a leaf node
+- Before Traversing the binary tree need to put the information in order to decode the binary tree first
+  - write 1 byte for how many unique characters there are 
+  - write 1 byte for the character, and 4 bytes for it's frequency
+  - repeat step 2 for each unique character in the huffman tree
 - Have to free up any dynamic memory we won't be using in the decode() function
 - probably just freeing up the priority queue at the end as we'll likely need huffman tree in decode 
 - depending on how the encoding/decoding table implemented might need to free it up here as well
@@ -54,6 +59,10 @@
 
 #### step 1: convert the .huf file to the .txt output using the encoding table
 - Open up the .huf file to binary read
+- Read the beginning of the .huf file to create the frequency table queue and reconstruct the huffman tree
+  - first byte read will tell the number of unique characters to use as a for loop parameter
+  - for loop for reading the first byte after for character and then 4 bytes for frequency integer and enqueue
+  - repeat the huffman table creation from step 2 of encoding
 - use the encoded file to traverse through the huffman tree (left for 0,right for 1)
 - once a leaf character is reached print the corresponding character into the output .txt file
 - go back to the root of the huffman tree and repeat the process until the end of the .huf file is reached
