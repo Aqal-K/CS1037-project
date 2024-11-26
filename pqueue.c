@@ -4,7 +4,6 @@
 *
 * Description:
 * Function implementations for the pqueue.h header file
-* currently untested
 * Dependencies:
 * - pqueue.h
 * - stdio.h
@@ -55,9 +54,9 @@ void enqueue(pqueue *queue,node_t *tnode) {
         queue->size += 1;
     }
     else {
-        // traverse queue until the weight of the current position is >= the weight of the inserting node
+        // traverse queue until the weight of the current position is > the weight of the inserting node
         node_q *current = queue->front;
-        while (current->next != NULL && tnode->weight > current->data->weight) {
+        while (current->next != NULL && tnode->weight > current->next->data->weight) {
             current = current->next;
         }
         // enqueue the node at this correct increasing weight position
@@ -96,10 +95,13 @@ void free_queue(pqueue **queue) {
 }
 
 void print_queue(pqueue *queue) {
+    if (queue == NULL) {
+        printf("Empty queue, unable to print");
+        return;
+    }
     node_q *current = queue->front;
     while (current != NULL) { // iterate through the queue to print
-        printf("%c,%d ",current->data->index,current->data->weight);
+        printf("%c: %d\n",current->data->index,current->data->weight);
         current = current->next;
     }
-    printf("\n");
 }
