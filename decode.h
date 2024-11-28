@@ -34,4 +34,6 @@ void decode(char *inputname, char *outputname);
  */
 int *byte_to_bit(unsigned char byte);
 
+
+
 #endif //DECODE_H

@@ -62,21 +62,39 @@ void decode(char *inputname, char *outputname) {
 
     node_t *root;
 
-    //root = create_hufftree(freq_table);
+    //root = create_hufftree(freq_table); When the function to create the huffman tree is made replace this
 
-    FILE *txt = fopen(strncat(inputname,".txt",4),"r");
+    FILE *txt = fopen(strncat(inputname,".txt",4),"w");
 
     unsigned char byte_reading;
+    node_t *current = root;
     while (fread(&byte_reading,1,1,huf) == 1) {
 
         int *bit_array = byte_to_bit(byte_reading);
-        node_t *current = root;
+
+        // for every byte read through the 8 bits
         for (int i = 0; i < 8; i++) {
-            if (bit_array[i] == 0) {
+
+            // if we reach a leaf node write the character to the file, start back at the root
+            if (current->index != -1) {
+                fputc(current->index,txt);
+                current = root;
+            }
+            // if the current bit is zero traverse left
+            else if (bit_array[i] == 0) {
                 current = current->left;
+            }
+            // if the current bit is 1 traverse right
+            else {
+                current = current->right;
             }
         }
     }
+    fclose(txt);
+    fclose(huf);
 
-
+    free_queue(&freq_table);
+    freq_table = NULL;
+    free_tree(&root);
+    root = NULL;
 }
