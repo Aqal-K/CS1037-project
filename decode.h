@@ -19,11 +19,11 @@
 void decode(char *inputname, char *outputname);
 
 /**
- *
- * @param byte the byte to convert
- * @return int array containing 0 or 1 in each index
+ * take a byte and store each of its bits in an int array
+ * @param byte byte to convert
+ * @param bits int array that the bits will be stored in
  */
-int *byte_to_bit(unsigned char byte);
+void byte_to_bit(unsigned char byte, int bits[8]);
 
 
 

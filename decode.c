@@ -37,7 +37,7 @@ void decode(char *inputname, char *outputname) {
 
     // loop to read 1 byte for the character, then 4 bytes for the frequency
     pqueue *freq_table = create_queue();
-    for (int i =0; i <unique_chars; i++) {
+    for (int i = 0; i <unique_chars; i++) {
         // Create variables to store data read by binary
         signed char index;
         int weight;
@@ -59,7 +59,8 @@ void decode(char *inputname, char *outputname) {
     node_t *current = root;
     while (fread(&byte_reading,1,1,huf) == 1) {
 
-        int *bit_array = byte_to_bit(byte_reading);
+        int bit_array[8];
+        byte_to_bit(byte_reading,bit_array);
 
         // for every byte read through the 8 bits
         for (int i = 0; i < 8; i++) {
@@ -89,4 +90,11 @@ void decode(char *inputname, char *outputname) {
     freq_table = NULL;
     free_tree(&root);
     root = NULL;
+}
+
+void byte_to_bit(unsigned char byte, int bits[8]) {
+    // Extract each bit from the byte
+    for (int i = 0; i < 8; i++) {
+        bits[7 - i] = (byte >> i) & 1; // Shift and mask to get the i-th bit
+    }
 }
