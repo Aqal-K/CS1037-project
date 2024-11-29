@@ -14,6 +14,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Added by Aqal
+void free_tree(node_t **root) {
+    if ((*root) == NULL) {
+        return;
+    }
+    // traverse through the end of left and right nodes
+    free_tree(&(*root)->left);
+    free_tree(&(*root)->right);
+
+    // free the current node
+    free(*root);
+    *root = NULL;
+}
+
 node_t* build_huffman_tree(pqueue *freq_queue) {
 
     // Checking if the priority queue is valid
