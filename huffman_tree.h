@@ -22,5 +22,17 @@
 node_t* build_huffman_tree(pqueue *freq_queue);
 
 
+/**
+ * Free a tree from the memory via post order recurrsion
+ * @param root root of tree to be freed
+ */
+void free_tree(node_t **root);
+
+/**
+ * count the number of leaf nodes (unique characters, in the tree)
+ * @param root root of huffman tree
+ * @return count of the leaf nodes
+ */
+int count_leafnodes(node_t *root);
 
 #endif //HUFFMAN_TREE_H

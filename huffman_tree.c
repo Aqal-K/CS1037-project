@@ -1,7 +1,7 @@
 /**
  * Author: Joshua Lee
  * Student ID: 251240670
- *
+ * modified nov 29
  * Description:
  * Implementation of a Huffman tree creation function
  * Dependencies:
@@ -64,4 +64,19 @@ node_t* build_huffman_tree(pqueue *freq_queue) {
 
     // Returning the root of the Huffman tree (aka the last node in the queue)
     return dequeue(freq_queue);
+}
+
+int count_leafnodes(node_t *root) {
+    // if node is empty return zero
+    if (root == NULL) {
+        return 0;
+    }
+
+    // if node is not leaf node recurrsion into left and right child
+    if (root->index == -1) {
+        return count_leafnodes(root->left) + count_leafnodes(root->right);
+    }
+
+    // return 1 if root is leaf node
+    return 1;
 }
