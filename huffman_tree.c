@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Added by Aqal
 void free_tree(node_t **root) {
     if ((*root) == NULL) {
         return;
