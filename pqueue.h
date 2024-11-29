@@ -1,6 +1,7 @@
 /**
 * Author: Aqalmal Khalil
 * Student ID: 251215993
+* modified nov 29
 *
 * Description:
 * Header file to define priority queue struct and functions for the Huffman tree nodes

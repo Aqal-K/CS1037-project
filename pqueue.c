@@ -1,7 +1,7 @@
 /**
 * Author: Aqalmal Khalil
 * Student ID: 251215993
-*
+* modified nov 29
 * Description:
 * Function implementations for the pqueue.h header file
 * Dependencies:
@@ -101,7 +101,7 @@ void print_queue(pqueue *queue) {
     }
     node_q *current = queue->front;
     while (current != NULL) { // iterate through the queue to print
-        printf("%c: %d\n",current->data->index,current->data->weight);
+        printf("%d: %d\n",current->data->index,current->data->weight);
         current = current->next;
     }
 }

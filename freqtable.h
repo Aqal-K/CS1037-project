@@ -1,7 +1,8 @@
 /**
 * Author: Aqalmal Khalil
 * Student ID: 251215993
-*
+* modified nov 29
+* 
 * Description:
 * Header file to define functions invloved in creating the frquency table
 * Dependencies:

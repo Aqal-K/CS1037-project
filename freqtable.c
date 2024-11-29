@@ -1,6 +1,7 @@
 /**
 * Author: Aqalmal Khalil
 * Student ID: 251215993
+* modified nov 29
 *
 * Description:
 * Function implementations for the freqtable.h header file
@@ -45,7 +46,11 @@ pqueue *create_table(char *inputfile) {
     }
     if (freq_table->front == NULL) {
         printf("Error: Could not add values to table\n");
+        free_queue(&freq_table);
         return NULL;
     }
+
+    node_t *fileend = create_treenode(-2,1);
+    enqueue(freq_table,fileend);
     return freq_table;
 }
