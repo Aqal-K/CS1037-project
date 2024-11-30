@@ -15,7 +15,7 @@
 #include <stdlib.h>
 
 void free_tree(node_t **root) {
-    if ((*root) == NULL) {
+    if ((*root) == NULL || *root == NULL) {
         fprintf(stderr,"Does this root == null run?\n");
         return;
     }
