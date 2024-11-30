@@ -29,17 +29,17 @@ void decode(char *inputname, char *outputname) {
 
     // start by reconstructing tree
     // read first byte to get the number of unique characters to put into queue
-    int unique_chars ;
-     if (fread(&unique_chars,sizeof(int),1,huf) != 1) {
-         printf("error reading file: Not properly formatted");
-         return;
-     }
+    char unique_chars ;
+    if (fread(&unique_chars,sizeof(char),1,huf) != 1) {
+        printf("error reading file: Not properly formatted");
+        return;
+    }
 
     // loop to read 1 byte for the character, then 4 bytes for the frequency
     pqueue *freq_table = create_queue();
     for (int i = 0; i <unique_chars; i++) {
         // Create variables to store data read by binary
-        signed char index;
+        char index;
         int weight;
 
         // read binary from files and store in variables
@@ -53,7 +53,7 @@ void decode(char *inputname, char *outputname) {
 
     node_t *root = build_huffman_tree(freq_table);
 
-    FILE *txt = fopen(strncat(inputname,".txt",4),"w");
+    FILE *txt = fopen(strncat(outputname,".txt",4),"w");
 
     unsigned char byte_reading;
     node_t *current = root;
