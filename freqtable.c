@@ -44,13 +44,14 @@ pqueue *create_table(char *inputfile) {
             enqueue(freq_table,tree);
         }
     }
+
     if (freq_table->front == NULL) {
         printf("Error: Could not add values to table\n");
         free_queue(&freq_table);
         return NULL;
     }
 
-    node_t *fileend = create_treenode(-2,1);
+    node_t *fileend = create_treenode(128,1);
     enqueue(freq_table,fileend);
     return freq_table;
 }

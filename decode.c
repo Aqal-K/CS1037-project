@@ -29,7 +29,7 @@ void decode(char *inputname, char *outputname) {
 
     // start by reconstructing tree
     // read first byte to get the number of unique characters to put into queue
-    char unique_chars ;
+    unsigned char unique_chars ;
     if (fread(&unique_chars,sizeof(char),1,huf) != 1) {
         printf("error reading file: Not properly formatted");
         return;
@@ -39,7 +39,7 @@ void decode(char *inputname, char *outputname) {
     pqueue *freq_table = create_queue();
     for (int i = 0; i <unique_chars; i++) {
         // Create variables to store data read by binary
-        char index;
+        unsigned char index;
         int weight;
 
         // read binary from files and store in variables
@@ -51,9 +51,33 @@ void decode(char *inputname, char *outputname) {
         enqueue(freq_table,tmp);
     }
 
+    // TESTING OUTPUT PRINTING THE TABLE
+    printf("Print The Reconstructed Frequency Table: \n");
+    print_queue(freq_table);
+
     node_t *root = build_huffman_tree(freq_table);
 
+    // TESTING OUTPUT PRINTING THE Tree
+    printf("Print The Reconstructed Frequency Table: \n");
+    print_huffman_tree(root);
+
     FILE *txt = fopen(outputname,"w");
+
+    // edge case where there's only 1 character in the file
+    if (unique_chars == 1) {
+        for (int i = 0; i < root->weight + 1; i++) {
+            fputc(root->index,txt);
+        }
+        fclose(txt);
+        fclose(huf);
+
+        free_queue(&freq_table);
+        freq_table = NULL;
+        free_tree(&root);
+        root = NULL;
+        return;
+    }
+
 
     unsigned char byte_reading;
     node_t *current = root;
@@ -67,7 +91,7 @@ void decode(char *inputname, char *outputname) {
 
             // if we reach a leaf node write the character to the file, start back at the root
             if (current->index != -1) {
-                if (current->index == -2) { // end of file reached: break out of for loop
+                if (current->index == 128) { // end of file reached: break out of for loop
                     break;
                 }
                 fputc(current->index,txt);
