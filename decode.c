@@ -19,7 +19,7 @@
 void decode(char *inputname, char *outputname) {
 
     // open up huff file
-    FILE *huf = fopen(strncat(inputname,".huf",4),"rb");
+    FILE *huf = fopen(inputname,"rb");
 
     // error handling
     if (huf == NULL) {
@@ -53,7 +53,7 @@ void decode(char *inputname, char *outputname) {
 
     node_t *root = build_huffman_tree(freq_table);
 
-    FILE *txt = fopen(strncat(outputname,".txt",4),"w");
+    FILE *txt = fopen(outputname,"w");
 
     unsigned char byte_reading;
     node_t *current = root;
