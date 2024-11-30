@@ -10,6 +10,7 @@
  * - huffman_tree.h
  * - stdio.h
  * - stdlib.h
+ * - writehuf.h
  */
 
 #include "freqtable.h"
@@ -22,6 +23,9 @@ void encode(char *input_filename, char *output_filename) {
 
     // Step 1: Create a frequency table from the input file by using create_table() from freqtable.c
     pqueue *freq_queue = create_table(input_filename);
+
+    printf("Printing frequency table after being built:\n\n"); // TESTING OUTPUT
+    print_queue(freq_queue);
 
     // Checking if the frequency table was created successfully
     if (freq_queue == NULL) {
@@ -39,8 +43,11 @@ void encode(char *input_filename, char *output_filename) {
         return;
     }
 
+    printf("Printing huffman tree:\n\n"); // TESTING OUTPUT
+    print_huffman_tree(huffman_tree);
+
     // Step 3: writes encoded data to file
-    write_huf_file(input_filename, output_filename, huffman_tree, freq_queue);
+    write_huf_file(input_filename, output_filename, huffman_tree);
 
     // Cleanup; Freeing dynamically allocated memory
     free_tree(&huffman_tree);
