@@ -48,18 +48,23 @@ void enqueue(pqueue *queue,node_t *tnode) {
     pnode->data = tnode;
 
     //enqueue node at front will queue is empty or weight is the lowest
-    if (queue->front == NULL || tnode->weight < queue->front->data->weight) {
+    // extra condition so equal frequency has lower index
+    if (queue->front == NULL || tnode->weight < queue->front->data->weight ||
+        (tnode->weight == queue->front->data->weight && tnode->index < queue->front->data->index)) {
         pnode->next = queue->front;
         queue->front = pnode;
         queue->size += 1;
     }
     else {
         // traverse queue until the weight of the current position is > the weight of the inserting node
+        // if there is equal frequency than ordered by lowest index
         node_q *current = queue->front;
-        while (current->next != NULL && tnode->weight > current->next->data->weight) {
+        while (current->next != NULL &&
+           (tnode->weight > current->next->data->weight ||
+            (tnode->weight == current->next->data->weight && tnode->index > current->next->data->index))) {
             current = current->next;
         }
-        // enqueue the node at this correct increasing weight position
+        // enqueue the node at this correct increasing weight position and increasing index for equal frequency
         pnode->next = current->next;
         current->next = pnode;
         queue->size += 1;
