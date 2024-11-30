@@ -15,6 +15,7 @@
 #include "freqtable.h"
 #include "pqueue.h"
 #include "huffman_tree.h"
+#include "writehuf.h"
 #include <stdio.h>
 
 void encode(char *input_filename, char *output_filename) {
@@ -38,9 +39,8 @@ void encode(char *input_filename, char *output_filename) {
         return;
     }
 
-    // Space reserved for Step 3
-
-    printf("Encoding functionality is incomplete. Step 3 not implemented yet.\n");
+    // Step 3: writes encoded data to file
+    write_huf_file(input_filename, output_filename, huffman_tree, freq_queue);
 
     // Cleanup; Freeing dynamically allocated memory
     free_tree(&huffman_tree);
