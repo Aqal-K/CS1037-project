@@ -2,8 +2,10 @@
  * Author:          Mekail Mujtaba
  * Student ID:      251372808
  * Last modified:   Nov 29th
+ *
  * Description:
  * Writes encoded data to a .huf file
+ *
  * Dependencies:
  * - pqueue.h
  * - stdio.h
@@ -17,9 +19,11 @@
 #include "huffman_tree.h"
 #include "writehuf.h"
 #include <stdio.h>
-#include <cstdint>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 
-void write_huf_file (char *input_filename, char *output_filename, node_t *huffman_tree, pqueue *freq_queue) {
+void write_huf_file (char *input_filename, char *output_filename, node_t *huffman_tree) {
     char *code_table[ASCII_SIZE] = {0};
     char code[ASCII_SIZE];
 
@@ -39,16 +43,8 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
     int unique_chars = count_leafnodes(huffman_tree);
     fwrite(&unique_chars, sizeof(uint8_t), 1, output_file);
 
-    node_q *current = freq_queue->front;
-    while (current != NULL) {
-        //Write the character to the file (1 byte)
-        fputc(current->data->index, output_file);
-
-        uint32_t frequency = current->data->weight;
-        fwrite(&frequency, sizeof(uint32_t), 1, output_file); //Write frequency to the file (4 bytes)
-
-        current = current->next; //Increment to next node in queue
-    }
+    // Put different logic here for a traversal to leaf node and then writing to file
+    write_queue_data(huffman_tree,output_file);
 
     //Opens file to read from
     FILE *input_file = fopen(input_filename, "r");
@@ -56,7 +52,6 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
         printf("\nFailed to open input file!\n");
         fclose(output_file);
         free_tree(&huffman_tree);
-        free_queue(freq_queue);
     }
 
     //Creating buffer, counter, and character variables
@@ -68,11 +63,11 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
     while ((character = fgetc(input_file)) != EOF) {
         if(code_table[character]) { //Debugging check to make sure character has a huffman code
             for (int i = 0; code_table[character][i] != 0; i++) {
-                buffer = (buffer << 1) | (code_table[ch][i] = '0');
+                buffer = (buffer << 1) | (code_table[character][i] = '0');
                 bit_counter++;
 
                 //Writes the buffer to the file once it has 8 bytes
-                if (bit_counter == BYTE_SIZE) {
+                if (bit_counter == BYTE) {
                     fwrite(&buffer, sizeof(uint8_t), 1, output_file);
                     buffer = 0;
                     bit_counter = 0; //Reser
@@ -83,7 +78,7 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
 
     //Writes remaining bits in the buffer to the file
     if (bit_counter > 0) {
-        buffer <<= (BYTE_SIZE - bit_counter);
+        buffer <<= (BYTE - bit_counter);
         fwrite(&buffer, sizeof(uint8_t), 1, output_file);
     }
 
@@ -93,8 +88,7 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
     fclose(input_file);
     fclose(output_file);
     free_tree(&huffman_tree);
-    free_queue(&freq_queue);
-    for (int i - 0; i < ASCII_SIZE; i++) {
+    for (int i = 0; i < ASCII_SIZE; i++) {
         if (code_table[i]) {
             free(code_table[i]);
         }
@@ -119,4 +113,21 @@ void build_code_table(node_t *root, char *code, int depth, char **code_table) {
     build_code_table(root->left, code, depth +1, code_table);
     code[depth] = '1';
     build_code_table(root->right, code, depth +1, code_table);
+}
+
+void write_queue_data(node_t *root, FILE *output_file) {
+    if (root == NULL) {
+        return;
+    }
+
+    write_queue_data(root->left,output_file);
+    write_queue_data(root->right,output_file);
+
+    if (root->left == NULL && root->right == NULL) {
+        //Write the character to the file (1 byte)
+        fputc(root->index, output_file);
+
+        uint32_t frequency = root->weight;
+        fwrite(&frequency, sizeof(uint32_t), 1, output_file); //Write frequency to the file (4 bytes)
+    }
 }

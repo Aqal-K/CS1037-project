@@ -6,17 +6,20 @@
  * Header file for functions to write encoded data to a .huf file
  * Dependencies:
  * - pqueue.h
+ * - stdio.h
  */
 
 #ifndef WRITEHUF_H
 #define WRITEHUF_H
+
+#include <stdio.h>
 
 #include "pqueue.h"
 
 #define ASCII_SIZE 128
 #define BYTE 8
 
-/*
+/**
  * Builds code table by traversing entire huffman tree
  *
  * @param root:         Root of Huffman tree
@@ -27,6 +30,20 @@
  * Builds the code table
  */
 void build_code_table(node_t *root, char *code, int depth, char **code_table);
-void write_huf_file (char *input_filename, char *output_filename, node_t *huffman_tree, pqueue *freq_queue);
+
+/**
+ *
+ * @param input_filename
+ * @param output_filename
+ * @param huffman_tree
+ */
+void write_huf_file (char *input_filename, char *output_filename, node_t *huffman_tree);
+
+/**
+ * Writes the data of each leaf node into the .huf file for reconstructing the tree
+ * @param root root of tree
+ * @param output_file file to write
+ */
+void write_queue_data(node_t *root, FILE *output_file);
 
 #endif //WRITEHUF_H
