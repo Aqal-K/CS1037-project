@@ -63,7 +63,7 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
     while ((character = fgetc(input_file)) != EOF) {
         if(code_table[character]) { //Debugging check to make sure character has a huffman code
             for (int i = 0; code_table[character][i] != 0; i++) {
-                buffer = (buffer << 1) | (code_table[character][i] = '0');
+                buffer = (buffer << 1) | (code_table[character][i] == '1');
                 bit_counter++;
 
                 //Writes the buffer to the file once it has 8 bytes
