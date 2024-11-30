@@ -11,7 +11,7 @@
 * - string.h
 * - huffman_tree.h
 */
-#include <decode.h>
+#include "decode.h"
 #include <stdio.h>
 #include <string.h>
 #include "huffman_tree.h"

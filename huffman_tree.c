@@ -16,6 +16,7 @@
 
 void free_tree(node_t **root) {
     if ((*root) == NULL) {
+        fprintf(stderr,"Does this root == null run?\n");
         return;
     }
     // traverse through the end of left and right nodes
@@ -79,4 +80,20 @@ int count_leafnodes(node_t *root) {
 
     // return 1 if root is leaf node
     return 1;
+}
+
+void print_huffman_tree(node_t *root) {
+    if (root == NULL) return;
+
+    // Traversing the left subtree
+    print_huffman_tree(root->left);
+
+    // Printing the node (if it's a leaf, it will have a valid character)
+    if (root->index != -1)
+        printf("Character: %d, Frequency: %d\n", root->index, root->weight);
+    else
+        printf("Internal Node, Frequency: %d\n", root->weight);
+
+    // Traversing the right subtree
+    print_huffman_tree(root->right);
 }

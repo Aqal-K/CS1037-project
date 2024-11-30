@@ -35,4 +35,10 @@ void free_tree(node_t **root);
  */
 int count_leafnodes(node_t *root);
 
+/**
+ * print the huffman tree in order
+ * @param root root of tree to print
+ */
+void print_huffman_tree(node_t *root);
+
 #endif //HUFFMAN_TREE_H

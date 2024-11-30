@@ -9,9 +9,9 @@
 * - stdio.h
 * - stdlib.h
 */
-#include <pqueue.h>
+#include "pqueue.h"
 #include <stdio.h>
-#include "stdlib.h"
+#include <stdlib.h>
 
 node_t* create_treenode(int index, int weight) {
 

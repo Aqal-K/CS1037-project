@@ -12,7 +12,7 @@
 * - stdio.h
 */
 
-#include <freqtable.h>
+#include "freqtable.h"
 #include <stdio.h>
 #define ASCII_SIZE 128
 

@@ -12,5 +12,7 @@
 int main() {
 
     encode("short.txt","short.huf");
+
+
     return 0;
 }

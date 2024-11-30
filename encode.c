@@ -50,6 +50,6 @@ void encode(char *input_filename, char *output_filename) {
     write_huf_file(input_filename, output_filename, huffman_tree);
 
     // Cleanup; Freeing dynamically allocated memory
-    free_tree(&huffman_tree);
+    //free_tree(&huffman_tree);
     free_queue(&freq_queue);
 }
