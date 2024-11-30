@@ -87,7 +87,6 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
     //(Just closes and frees everything)
     fclose(input_file);
     fclose(output_file);
-    free_tree(&huffman_tree);
     for (int i = 0; i < ASCII_SIZE; i++) {
         if (code_table[i]) {
             free(code_table[i]);
