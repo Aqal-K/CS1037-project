@@ -12,6 +12,8 @@
 * - huffman_tree.h
 */
 #include "decode.h"
+
+#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 #include "huffman_tree.h"
@@ -62,24 +64,13 @@ void decode(char *inputname, char *outputname) {
     print_huffman_tree(root);
 
     FILE *txt = fopen(outputname,"w");
-
-    // edge case where there's only 1 character in the file
-    if (unique_chars == 1) {
-        for (int i = 0; i < root->weight + 1; i++) {
-            fputc(root->index,txt);
-        }
-        fclose(txt);
+    if (txt == NULL) {
+        printf("Error: Can't open output file\n");
         fclose(huf);
-
-        free_queue(&freq_table);
-        freq_table = NULL;
-        free_tree(&root);
-        root = NULL;
         return;
     }
 
-
-    unsigned char byte_reading;
+    uint8_t byte_reading;
     node_t *current = root;
     while (fread(&byte_reading,1,1,huf) == 1) {
 
@@ -91,9 +82,6 @@ void decode(char *inputname, char *outputname) {
 
             // if we reach a leaf node write the character to the file, start back at the root
             if (current->index != -1) {
-                if (current->index == 128) { // end of file reached: break out of for loop
-                    break;
-                }
                 fputc(current->index,txt);
                 current = root;
             }
@@ -116,7 +104,7 @@ void decode(char *inputname, char *outputname) {
     root = NULL;
 }
 
-void byte_to_bit(unsigned char byte, int bits[8]) {
+void byte_to_bit(uint8_t byte, int bits[8]) {
     // Extract each bit from the byte
     for (int i = 0; i < 8; i++) {
         bits[7 - i] = (byte >> i) & 1; // Shift and mask to get the i-th bit
