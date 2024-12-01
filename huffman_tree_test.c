@@ -7,9 +7,12 @@
  *
  * Dependencies:
  * - huffman_tree.h
+ * - huffman_tree.c
  * - pqueue.h
+ * - pqueue.c
  * - stdio.h
  * - stdlib.h
+ * + All dependencies of any files included here
  */
 
 #include "huffman_tree.h"

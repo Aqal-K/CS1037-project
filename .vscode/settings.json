@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "freqtable.h": "c"
+        "freqtable.h": "c",
+        "encode.h": "c"
     }
 }

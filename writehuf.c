@@ -8,15 +8,19 @@
  *
  * Dependencies:
  * - pqueue.h
+ * - pqueue.c
  * - stdio.h
- * - stdint
+ * - stdint.h
+ * - writehuf.h
  * - huffman_tree.h
+ * - huffman_tree.c
  * - writehuf.h
  * - stdlub.h
  * - string.h
+ * 
+ * + All dependencies of any files included here
  */
 
-//gcc encode_testing.c encode.c pqueue.c decode.c writehuf.c huffman_tree.c freqtable.c
 
 #include "pqueue.h"
 #include "huffman_tree.h"

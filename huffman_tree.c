@@ -5,9 +5,12 @@
  * Description:
  * Implementation of a Huffman tree creation function
  * Dependencies:
+ * - huffman_tree.c
  * - pqueue.h
+ * - pqueue.c
  * - stdio.h
  * - stdlib.h
+ * + All dependencies of any files included here
  */
 
 #include "pqueue.h"

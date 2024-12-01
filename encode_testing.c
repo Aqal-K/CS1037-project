@@ -7,6 +7,8 @@
  *
  * Dependencies:
  *  - encode.h
+ *  - encode.c
+ *  + All dependencies of any files included here
  */
 
 #include "encode.h"

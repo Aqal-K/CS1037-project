@@ -5,7 +5,9 @@
  * Description:
  * Header file to define the function involved in making the Huffman Tree
  * Dependencies:
+ * pqueue.c
  * pqueue.h
+ * + All dependencies of any files included here
  */
 #ifndef HUFFMAN_TREE_H
 #define HUFFMAN_TREE_H

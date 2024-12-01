@@ -5,11 +5,17 @@
  * Integrates freqtable.c, huffman_tree.c, and writehuf.c
  *
  * Dependencies:
+ * - encode.h
  * - freqtable.h
+ * - freqtable.c
  * - pqueue.h
+ * - pqueue.c
  * - huffman_tree.h
+ * - huffman_tree.c
  * - stdio.h
  * - writehuf.h
+ * - writehuf.c
+ * + All dependencies of any files included here
  */
 
 #include "freqtable.h"

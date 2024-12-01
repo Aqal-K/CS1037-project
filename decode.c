@@ -9,6 +9,8 @@
 * - decode.h
 * - stdio.h
 * - huffman_tree.h
+* - huffman_tree.c
+* + All dependencies of any files included here
 */
 #include "decode.h"
 #include <stdio.h>

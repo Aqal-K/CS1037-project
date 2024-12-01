@@ -8,7 +8,10 @@
  * - stdio.h
  * - string.h
  * - encode.h
+ * - encode.c
  * - decode.h
+ * - decode.c
+ * + All dependencies of any files included here
  *
  * Compilation:
  * huffman.c, encode.c, pqueue.c, decode.c, writehuf.c, huffman_tree.c, freqtable.c

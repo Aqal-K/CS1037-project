@@ -7,8 +7,10 @@
 *
 * Dependances:
 * - pqueue.h
+* - pqueue.c
 * - stdio.h
 * - stdlib.h
+* + All dependencies of any files included here
 */
 #include "pqueue.h"
 #include <stdio.h>
