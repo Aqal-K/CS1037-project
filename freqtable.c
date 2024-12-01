@@ -8,7 +8,6 @@
 *
 * Dependencies:
 * - freqtable.h
-* - pqueue.c
 * - stdio.h
 */
 
