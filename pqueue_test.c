@@ -4,10 +4,11 @@
 *
 * Description:
 * Testing file for pqueue.c
-* Currently not complete
 *
-* Compilation:
-* pqueue.c pqueue.h pqueue_test.c
+* Dependances:
+* - pqueue.h
+* - stdio.h
+* - stdlib.h
 */
 #include "pqueue.h"
 #include <stdio.h>

@@ -13,7 +13,6 @@
 #define WRITEHUF_H
 
 #include <stdio.h>
-
 #include "pqueue.h"
 
 #define ASCII_SIZE 128

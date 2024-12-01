@@ -9,7 +9,6 @@
  * - pqueue.h
  * - huffman_tree.h
  * - stdio.h
- * - stdlib.h
  * - writehuf.h
  */
 
@@ -26,7 +25,6 @@ void encode(char *input_filename, char *output_filename) {
 
     // Checking if the frequency table was created successfully
     if (freq_queue == NULL) {
-        printf("Error: Failed to create frequency table.\n");
         return;
     }
 
@@ -35,7 +33,6 @@ void encode(char *input_filename, char *output_filename) {
 
     // Checking if the Huffman tree was created successfully
     if (huffman_tree == NULL) {
-        printf("Error: Failed to build Huffman tree.\n");
         free_queue(&freq_queue);
         return;
     }

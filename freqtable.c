@@ -33,7 +33,8 @@ pqueue *create_table(char *inputfile) {
             frequency_array[ch] += 1;
         }
         else {
-            printf("Non standard ASCII characters: Aborting program");
+            printf("Non standard ASCII characters: Aborting program\n");
+            fclose(readfile);
             return NULL;
         }
 

@@ -9,9 +9,11 @@
  * Dependencies:
  * - pqueue.h
  * - stdio.h
- * - cstdint
+ * - stdint
  * - huffman_tree.h
  * - writehuf.h
+ * - stdlub.h
+ * - string.h
  */
 
 //gcc encode_testing.c encode.c pqueue.c decode.c writehuf.c huffman_tree.c freqtable.c

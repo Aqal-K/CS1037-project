@@ -2,7 +2,16 @@
  * CS1037 Huffman Coding
  *
  * This file contains the main program,the structure of the Huffman node
- * and user interface for running your Huffman Encoder/Decoder. 
+ * and user interface for running your Huffman Encoder/Decoder.
+ *
+ * dependancies:
+ * - stdio.h
+ * - string.h
+ * - encode.h
+ * - decode.h
+ *
+ * Compilation:
+ * huffman.c, encode.c, pqueue.c, decode.c, writehuf.c, huffman_tree.c, freqtable.c
  */
 
 #include <stdio.h>

@@ -7,6 +7,7 @@
 * testing functions in decode.c
 * Dependencies:
 *  - decode.h
+*  - stdio.h
 */
 
 #include <stdio.h>

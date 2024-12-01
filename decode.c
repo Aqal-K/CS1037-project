@@ -8,7 +8,6 @@
 * Dependencies:
 * - decode.h
 * - stdio.h
-* - string.h
 * - huffman_tree.h
 */
 #include "decode.h"

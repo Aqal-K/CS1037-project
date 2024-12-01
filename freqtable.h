@@ -10,6 +10,7 @@
 */
 #ifndef FREQTABLE_H
 #define FREQTABLE_H
+
 #include "pqueue.h"
 
 /**

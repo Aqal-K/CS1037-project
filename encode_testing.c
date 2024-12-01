@@ -13,7 +13,7 @@
 int main() {
 
     //Simple encode test
-    encode("Testing files/short.txt","short.huf");
+    encode("short.txt","short.huf");
 
 
     return 0;

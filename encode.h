@@ -6,7 +6,6 @@
  * Integrates freqtable.c, huffman_tree.c, and **INSERT STEP 3 NAME HERE**
  *
  * Dependencies:
- * - pqueue.h
  */
 
 #ifndef ENCODE_H
