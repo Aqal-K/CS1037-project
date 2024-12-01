@@ -11,7 +11,7 @@
 #include "encode.h"
 int main() {
 
-    encode("short.txt","short.huf");
+    encode("Testing files/short.txt","short.huf");
 
 
     return 0;

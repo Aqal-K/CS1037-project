@@ -32,10 +32,13 @@
 void build_code_table(node_t *root, char *code, int depth, char **code_table);
 
 /**
- *
- * @param input_filename
- * @param output_filename
- * @param huffman_tree
+ * Writes encoded data to a .huf file
+ * 
+ * @param input_filename:   File name of .txt file to read from
+ * @param output_filename:  File name of .huf file to create/write to
+ * @param huffman_tree:     Pointer to huffman tree
+ * 
+ * Does not return anything, but creates a file with the encoded data
  */
 void write_huf_file (char *input_filename, char *output_filename, node_t *huffman_tree);
 

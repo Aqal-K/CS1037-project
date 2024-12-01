@@ -14,6 +14,7 @@
  * - writehuf.h
  */
 
+//gcc encode_testing.c encode.c pqueue.c decode.c writehuf.c huffman_tree.c freqtable.c
 
 #include "pqueue.h"
 #include "huffman_tree.h"
@@ -57,20 +58,25 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
     //Creating buffer, counter, and character variables
     uint8_t buffer = 0;     //One buffer (8 bits) written at a time
     int bit_counter = 0;    //Counts until buffer is full
-    int character;          //Stores each character from the file
+    char character;          //Stores each character from the file
 
     //Gets each character from the input file
     while ((character = fgetc(input_file)) != EOF) {
-        if(code_table[character]) { //Debugging check to make sure character has a huffman code
+        printf("\nCode: %s\n", code_table[character]);
+        printf("%c", character);
+        if(code_table[character]) { //Makes sure character has huffman code--skips non-ascii symbols!
             for (int i = 0; code_table[character][i] != 0; i++) {
+                
                 buffer = (buffer << 1) | (code_table[character][i] == '1');
                 bit_counter++;
+                //printf("%d, ", buffer);
 
                 //Writes the buffer to the file once it has 8 bytes
                 if (bit_counter == BYTE) {
                     fwrite(&buffer, sizeof(uint8_t), 1, output_file);
                     buffer = 0;
                     bit_counter = 0; //Reser
+                    //printf
                 }
             }
         } else printf("Something went wrong with the Huffman tree--this character does not have a code!");
