@@ -33,6 +33,11 @@ pqueue *create_table(char *inputfile) {
         if (ch >= 0 && ch < ASCII_SIZE) {
             frequency_array[ch] += 1;
         }
+        else {
+            printf("Non standard ASCII characters: Aborting program");
+            return NULL;
+        }
+
     }
     fclose(readfile);
 
@@ -45,11 +50,12 @@ pqueue *create_table(char *inputfile) {
         }
     }
     if (freq_table->front == NULL) {
-        printf("Error: Could not add values to table\n");
+        printf("Error: Empty text file\n");
         free_queue(&freq_table);
         return NULL;
     }
 
+    // Create arbitrary node for the end of file character
     node_t *endof_file = create_treenode(128,1);
     enqueue(freq_table,endof_file);
     return freq_table;
