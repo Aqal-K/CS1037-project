@@ -89,8 +89,16 @@ void decode(char *inputname, char *outputname) {
         // for every byte read through the 8 bits
         for (int i = 0; i < 8; i++) {
 
+            if (bit_array[i] == 0) {
+                current = current->left;
+            }
+            // if the current bit is 1 traverse right
+            else {
+                current = current->right;
+            }
+
             // if we reach a leaf node write the character to the file, start back at the root
-            if (current->index != -1) {
+            if (current->left == NULL && current->right == NULL) {
                 if (current->index == 128) { // end of file reached: break out of for loop
                     break;
                 }
@@ -98,13 +106,7 @@ void decode(char *inputname, char *outputname) {
                 current = root;
             }
             // if the current bit is zero traverse left
-            else if (bit_array[i] == 0) {
-                current = current->left;
-            }
-            // if the current bit is 1 traverse right
-            else {
-                current = current->right;
-            }
+
         }
     }
     fclose(txt);
