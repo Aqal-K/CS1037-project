@@ -62,8 +62,6 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
 
     //Gets each character from the input file
     while ((character = fgetc(input_file)) != EOF) {
-        printf("\nCode: %s\n", code_table[character]);
-        printf("%c", character);
         if(code_table[character]) { //Makes sure character has huffman code--skips non-ascii symbols!
             for (int i = 0; code_table[character][i] != 0; i++) {
                 
@@ -79,12 +77,17 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
                     //printf
                 }
             }
-        } else printf("Something went wrong with the Huffman tree--this character does not have a code!");
+        }
     }
 
     // Write the EOF (128) Character
     for (int i = 0; code_table[128][i] != 0; i++) {
 
+        /*  Okay, let's explain this
+            The conditional statement, "(code_table[128][i] == '1')" Works because we know that it will always
+            either hold a '0' or '1' character. it returns 1 if true, 0 if false. Basically, this is an elegant
+            way of adding either 0 or 1 to the buffer after shifting it left, based on the code table char!
+        */
         buffer = (buffer << 1) | (code_table[128][i] == '1');
         bit_counter++;
         //printf("%d, ", buffer);
