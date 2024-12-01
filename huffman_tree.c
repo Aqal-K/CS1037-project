@@ -16,7 +16,6 @@
 
 void free_tree(node_t **root) {
     if ((*root) == NULL || *root == NULL) {
-        fprintf(stderr,"Does this root == null run?\n");
         return;
     }
     // traverse through the end of left and right nodes
