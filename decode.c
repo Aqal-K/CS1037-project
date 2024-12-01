@@ -50,15 +50,8 @@ void decode(char *inputname, char *outputname) {
         enqueue(freq_table,tmp);
     }
 
-    // TESTING OUTPUT PRINTING THE TABLE
-    printf("Print The Reconstructed Frequency Table: \n");
-    print_queue(freq_table);
-
+    // Create the tree and open the text file to write to
     node_t *root = build_huffman_tree(freq_table);
-
-    // TESTING OUTPUT PRINTING THE Tree
-    printf("Print The Reconstructed Frequency Table: \n");
-    print_huffman_tree(root);
 
     FILE *txt = fopen(outputname,"w");
 
