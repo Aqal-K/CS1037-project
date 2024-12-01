@@ -25,8 +25,8 @@
 #include <string.h>
 
 void write_huf_file (char *input_filename, char *output_filename, node_t *huffman_tree) {
-    char *code_table[ASCII_SIZE] = {0};
-    char code[ASCII_SIZE];
+    char *code_table[ASCII_SIZE+1] = {0};
+    char code[ASCII_SIZE+1];
 
     //Builds the code table 
     build_code_table(huffman_tree, code, 0, code_table);
@@ -82,6 +82,22 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
         } else printf("Something went wrong with the Huffman tree--this character does not have a code!");
     }
 
+    // Write the EOF (128) Character
+    for (int i = 0; code_table[128][i] != 0; i++) {
+
+        buffer = (buffer << 1) | (code_table[128][i] == '1');
+        bit_counter++;
+        //printf("%d, ", buffer);
+
+        //Writes the buffer to the file once it has 8 bytes
+        if (bit_counter == BYTE) {
+            fwrite(&buffer, sizeof(uint8_t), 1, output_file);
+            buffer = 0;
+            bit_counter = 0; //Resert
+            //printf
+        }
+    }
+
     //Writes remaining bits in the buffer to the file
     if (bit_counter > 0) {
         buffer <<= (BYTE - bit_counter);
@@ -93,7 +109,7 @@ void write_huf_file (char *input_filename, char *output_filename, node_t *huffma
     //(Just closes and frees everything)
     fclose(input_file);
     fclose(output_file);
-    for (int i = 0; i < ASCII_SIZE; i++) {
+    for (int i = 0; i < ASCII_SIZE+1; i++) {
         if (code_table[i]) {
             free(code_table[i]);
         }

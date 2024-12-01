@@ -13,7 +13,6 @@
 */
 #include "decode.h"
 #include <stdio.h>
-#include <string.h>
 #include "huffman_tree.h"
 
 void decode(char *inputname, char *outputname) {
