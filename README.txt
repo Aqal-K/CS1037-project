@@ -1,4 +1,5 @@
 # CS1037-project
+Authors: Aqalmal Khalil, Mekail Mujtaba, Joshua Lee
 Compilation Instructions:   gcc huffman.c encode.c pqueue.c decode.c writehuf.c huffman_tree.c freqtable.c -o huffman
 Usage Instructions:         ./huffman [encode | decode] <input_file_path> <output_file_path>
     Note:   if the input/output file is in the same folder as the compiled program, then
