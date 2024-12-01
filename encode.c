@@ -1,5 +1,5 @@
 /**
- * Author: Joshua Lee
+ * Author: Joshua Lee, Mekail Mujtaba, Aqalmal Khalil
  * Description:
  * Implementation of the encode() function for the Huffman compression.
  * Integrates freqtable.c, huffman_tree.c, and **INSERT STEP 3 NAME HERE**
