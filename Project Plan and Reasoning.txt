@@ -1,4 +1,4 @@
-## Program high level overview #
+## Program high level overview/reasoning
 
 ### High level breakdown of steps/ functions required to be implemented for the program
 
@@ -33,11 +33,12 @@
 #### step 3: Make the encoding table and output encoded binary string to output file 
 - open up a .huf file to bitwise write to (filename taken from parameter 2 of the encode function)
 - read character by character through the text file
-- for each character traverse through the tree to the corresponding leaf of the same character
-- binary code for the encoded file is formed by appending 0 when the left branch is taken, and 1 for right branch
-- repeat until the leaf of the current character is reached and repeat from the root for the next character
-- Close the file and end the encode function.
-- Note: other option to do it that I've seen online instead of traversing through the tree every time
+- Option 1:
+  - for each character traverse through the tree to the corresponding leaf of the same character
+  - binary code for the encoded file is formed by appending 0 when the left branch is taken, and 1 for right branch
+  - repeat until the leaf of the current character is reached and repeat from the root for the next character
+  - Close the file and end the encode function.
+- Option 2: to reduce computations, we can do this instead! (This is what we ended up doing, as it was easier and faster)
   - traverse huffman tree once for each character in the tree to get it's respective binary huffman code. 
   - make a conversion table list to store each character and their corresponding huffman code from the tree
   - Then traverse through your input file and replace each character with their corresponding huffman code
