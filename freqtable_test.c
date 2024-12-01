@@ -7,7 +7,7 @@
 *
 * Dependencies:
 * - freqtable.h
-* - pqueue.c
+* - pqueue.h
 * - stdio.h
 */
 #include "pqueue.h"

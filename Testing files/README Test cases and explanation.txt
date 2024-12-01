@@ -1,1 +1,0 @@
-In this folder, you can see all input txt, encoded huf, and ouput txt files for the provided test cases.

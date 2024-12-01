@@ -6,7 +6,7 @@
 * Description:
 * testing functions in decode.c
 * Dependencies:
-*
+*  - decode.h
 */
 
 #include <stdio.h>
@@ -14,6 +14,8 @@
 #include "decode.h"
 
 int main() {
+
+    // Testing byte-to-bit function
     unsigned char testbyte = 92;
     int test_bits[8];
     byte_to_bit(testbyte,test_bits);

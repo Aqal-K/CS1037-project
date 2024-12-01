@@ -6,11 +6,13 @@
  * testing file for encoding
  *
  * Dependencies:
+ *  - encode.h
  */
 
 #include "encode.h"
 int main() {
 
+    //Simple encode test
     encode("Testing files/short.txt","short.huf");
 
 
